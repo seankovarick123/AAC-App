@@ -15,10 +15,10 @@ body { margin:0; }
   width: 100%;
 }
 
-.tile {
+.link {
   position: absolute;
-  background: rgba(0,0,0,0);
-  border: none;
+  display: block;
+  z-index: 10;
 }
 </style>
 </head>
@@ -28,31 +28,17 @@ body { margin:0; }
 <div class="container">
   <img src="Home.jpeg" class="bg">
 
-  <!-- CORE WORDS (top row) -->
-  <button class="tile" style="top:14%; left:5%; width:18%; height:10%;" onclick="speak('I')"></button>
-  <button class="tile" style="top:14%; left:25%; width:18%; height:10%;" onclick="speak('me')"></button>
-  <button class="tile" style="top:14%; left:45%; width:18%; height:10%;" onclick="speak('you')"></button>
-  <button class="tile" style="top:14%; left:65%; width:18%; height:10%;" onclick="speak('my')"></button>
-
-  <!-- CATEGORY BUTTONS (aligned better now) -->
-  <button class="tile" style="top:42%; left:8%; width:24%; height:20%;" onclick="go('people.html')"></button>
-  <button class="tile" style="top:42%; left:36%; width:24%; height:20%;" onclick="go('food.html')"></button>
-  <button class="tile" style="top:42%; left:64%; width:24%; height:20%;" onclick="go('actions.html')"></button>
+  <!-- TEST LINK (BIG AREA) -->
+  <a href="actions.html" class="link" style="
+    top:30%;
+    left:0%;
+    width:100%;
+    height:60%;
+    background: rgba(0,255,0,0.3);
+  ">
+  </a>
 
 </div>
 
-<script>
-function speak(word){
-  speechSynthesis.speak(new SpeechSynthesisUtterance(word));
-}
-
-function go(page){
-  window.location.href = page;
-}
-</script>
-
 </body>
 </html>
-<button onclick="alert('clicked')" style="position:absolute; top:10%; left:10%; z-index:20;">
-TEST
-</button>
