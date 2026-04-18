@@ -17,8 +17,8 @@ body { margin:0; }
 
 .tile {
   position: absolute;
-  background: rgba(0,0,0,0);
   border: none;
+  font-size: 20px;
 }
 </style>
 </head>
@@ -28,24 +28,21 @@ body { margin:0; }
 <div class="container">
   <img src="Home.jpeg" class="bg">
 
-  <!-- CORE WORDS (top row rough mapping) -->
-  <button class="tile" style="top:15%; left:5%; width:18%; height:12%;" onclick="speak('I')"></button>
-  <button class="tile" style="top:15%; left:25%; width:18%; height:12%;" onclick="speak('me')"></button>
-  <button class="tile" style="top:15%; left:45%; width:18%; height:12%;" onclick="speak('you')"></button>
-  <button class="tile" style="top:15%; left:65%; width:18%; height:12%;" onclick="speak('my')"></button>
-
-  <!-- CATEGORY BUTTONS (based on your layout) -->
-  <button class="tile" style="top:45%; left:10%; width:22%; height:20%;" onclick="go('people.html')"></button>
-  <button class="tile" style="top:45%; left:38%; width:22%; height:20%;" onclick="go('food.html')"></button>
-  <button class="tile" style="top:45%; left:66%; width:22%; height:20%;" onclick="go('actions.html')"></button>
+  <!-- TEST BUTTON (VISIBLE FOOD BUTTON) -->
+  <button class="tile" style="
+    top:40%; 
+    left:30%; 
+    width:40%; 
+    height:30%; 
+    background: rgba(255,0,0,0.3);
+    border: 2px solid red;
+  " onclick="go('food.html')">
+  FOOD
+  </button>
 
 </div>
 
 <script>
-function speak(word){
-  speechSynthesis.speak(new SpeechSynthesisUtterance(word));
-}
-
 function go(page){
   window.location.href = page;
 }
