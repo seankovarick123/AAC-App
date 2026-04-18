@@ -3,51 +3,40 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<link rel="apple-touch-icon" href="icon.png">
 
 <style>
-body { margin:0; font-family:Arial; background:#f0f2f5; }
+body { margin:0; font-family:Arial; background:#f5f5f5; }
 
 .sentence-bar {
   position:fixed; top:0; width:100%;
-  background:white; padding:15px;
+  background:white; padding:12px;
   display:flex; justify-content:space-between;
   border-bottom:2px solid #ddd;
 }
 
-.sentence { font-size:22px; }
+.sentence { font-size:20px; }
 
 .grid {
-  margin-top:80px;
+  margin-top:70px;
   display:grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap:15px;
-  padding:15px;
+  grid-template-columns: repeat(3, 1fr);
+  gap:12px;
+  padding:12px;
 }
 
 .tile {
   background:white;
-  border-radius:20px;
-  padding:20px;
+  border-radius:15px;
+  padding:18px;
   text-align:center;
-  font-size:22px;
+  font-size:20px;
   font-weight:bold;
-  box-shadow:0 3px 6px rgba(0,0,0,0.1);
+  box-shadow:0 2px 5px rgba(0,0,0,0.1);
 }
 
-.nav {
-  display:grid;
-  grid-template-columns: repeat(4,1fr);
-  gap:10px;
-  padding:10px;
-  background:white;
-  border-bottom:1px solid #ddd;
-}
+.category { background:#d0e6ff; }
+.core { background:#e6ffd0; }
 
-.nav button {
-  padding:15px;
-  font-size:18px;
-}
 </style>
 </head>
 
@@ -61,38 +50,70 @@ body { margin:0; font-family:Arial; background:#f0f2f5; }
   </div>
 </div>
 
-<div class="nav">
-  <button onclick="load('home')">Home</button>
-  <button onclick="load('food')">Food</button>
-  <button onclick="load('people')">People</button>
-  <button onclick="load('actions')">Actions</button>
-</div>
-
 <div class="grid" id="grid"></div>
 
 <script>
 let sentence = [];
 
-const data = {
+const pages = {
 
 home: [
-  "I","me","you","want",
-  "help","go","stop","more"
+  {text:"I", type:"core"},
+  {text:"me", type:"core"},
+  {text:"you", type:"core"},
+  {text:"my", type:"core"},
+  {text:"is", type:"core"},
+  {text:"can", type:"core"},
+  {text:"do", type:"core"},
+
+  {text:"People", nav:"people"},
+  {text:"Food", nav:"food"},
+  {text:"Actions", nav:"actions"},
+  {text:"Places", nav:"places"}
 ],
 
 food: [
-  "eat","drink","cookie","crackers",
-  "pizza","chips","popcorn","snack"
+  {text:"eat"},
+  {text:"drink"},
+  {text:"cookie"},
+  {text:"crackers"},
+  {text:"pizza"},
+  {text:"chips"},
+  {text:"popcorn"},
+  {text:"snack"},
+  {text:"back", nav:"home"}
 ],
 
 people: [
-  "mom","dad","grandma","grandpa",
-  "friend","baby","teacher","family"
+  {text:"mom"},
+  {text:"dad"},
+  {text:"grandma"},
+  {text:"grandpa"},
+  {text:"friend"},
+  {text:"baby"},
+  {text:"family"},
+  {text:"back", nav:"home"}
 ],
 
 actions: [
-  "go","help","open","play",
-  "read","stop","sleep","eat"
+  {text:"go"},
+  {text:"help"},
+  {text:"open"},
+  {text:"play"},
+  {text:"read"},
+  {text:"stop"},
+  {text:"sleep"},
+  {text:"back", nav:"home"}
+],
+
+places: [
+  {text:"home"},
+  {text:"school"},
+  {text:"park"},
+  {text:"store"},
+  {text:"restaurant"},
+  {text:"bathroom"},
+  {text:"back", nav:"home"}
 ]
 
 };
@@ -101,15 +122,23 @@ function load(page){
   const grid = document.getElementById("grid");
   grid.innerHTML = "";
 
-  data[page].forEach(word=>{
+  pages[page].forEach(item=>{
     const div = document.createElement("div");
     div.className = "tile";
-    div.innerText = word;
+
+    if(item.type==="core") div.classList.add("core");
+    if(item.nav) div.classList.add("category");
+
+    div.innerText = item.text;
 
     div.onclick = ()=>{
-      sentence.push(word);
-      update();
-      speakWord(word);
+      if(item.nav){
+        load(item.nav);
+      } else {
+        sentence.push(item.text);
+        update();
+        speakWord(item.text);
+      }
     };
 
     grid.appendChild(div);
@@ -135,7 +164,7 @@ function clearSentence(){
   update();
 }
 
-load('home');
+load("home");
 </script>
 
 </body>
