@@ -1,104 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<link rel="apple-touch-icon" href="icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AAC Speech App</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="icon.png">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f6f8;
-    }
+<style>
+body { margin:0; font-family:Arial; background:#f0f2f5; }
 
-    .sentence-bar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: white;
-      padding: 15px;
-      border-bottom: 2px solid #ddd;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+.sentence-bar {
+  position:fixed; top:0; width:100%;
+  background:white; padding:15px;
+  display:flex; justify-content:space-between;
+  border-bottom:2px solid #ddd;
+}
 
-    .sentence-text {
-      font-size: 20px;
-      flex: 1;
-      margin-right: 10px;
-    }
+.sentence { font-size:22px; }
 
-    .controls button {
-      margin-left: 5px;
-      padding: 10px;
-      font-size: 16px;
-    }
+.grid {
+  margin-top:80px;
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:15px;
+  padding:15px;
+}
 
-    .categories {
-      margin-top: 80px;
-      display: flex;
-      overflow-x: auto;
-      background: #fff;
-      padding: 10px;
-      border-bottom: 1px solid #ddd;
-    }
+.tile {
+  background:white;
+  border-radius:20px;
+  padding:20px;
+  text-align:center;
+  font-size:22px;
+  font-weight:bold;
+  box-shadow:0 3px 6px rgba(0,0,0,0.1);
+}
 
-    .category {
-      margin-right: 10px;
-      padding: 10px 15px;
-      background: #007aff;
-      color: white;
-      border-radius: 20px;
-      cursor: pointer;
-    }
+.nav {
+  display:grid;
+  grid-template-columns: repeat(4,1fr);
+  gap:10px;
+  padding:10px;
+  background:white;
+  border-bottom:1px solid #ddd;
+}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      padding: 15px;
-    }
-
-    .tile {
-      background: white;
-      border-radius: 15px;
-      padding: 10px;
-      text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      cursor: pointer;
-    }
-
-    .tile img {
-      width: 100%;
-      border-radius: 10px;
-    }
-
-    .tile p {
-      font-size: 18px;
-      margin: 10px 0 0;
-    }
-  </style>
+.nav button {
+  padding:15px;
+  font-size:18px;
+}
+</style>
 </head>
 
 <body>
 
 <div class="sentence-bar">
-  <div class="sentence-text" id="sentence"></div>
-  <div class="controls">
-    <button onclick="speakSentence()">🔊</button>
+  <div class="sentence" id="sentence"></div>
+  <div>
+    <button onclick="speak()">🔊</button>
     <button onclick="clearSentence()">❌</button>
   </div>
 </div>
 
-<div class="categories">
-  <div class="category" onclick="loadCategory('needs')">Needs</div>
-  <div class="category" onclick="loadCategory('food')">Food</div>
-  <div class="category" onclick="loadCategory('feelings')">Feelings</div>
+<div class="nav">
+  <button onclick="load('home')">Home</button>
+  <button onclick="load('food')">Food</button>
+  <button onclick="load('people')">People</button>
+  <button onclick="load('actions')">Actions</button>
 </div>
 
 <div class="grid" id="grid"></div>
@@ -106,61 +73,69 @@
 <script>
 let sentence = [];
 
-const categories = {
-  needs: [
-    { text: "I want", img: "https://via.placeholder.com/150" },
-    { text: "Help", img: "https://via.placeholder.com/150" },
-    { text: "Stop", img: "https://via.placeholder.com/150" }
-  ],
-  food: [
-    { text: "Apple", img: "https://via.placeholder.com/150" },
-    { text: "Drink", img: "https://via.placeholder.com/150" },
-    { text: "Snack", img: "https://via.placeholder.com/150" }
-  ],
-  feelings: [
-    { text: "Happy", img: "https://via.placeholder.com/150" },
-    { text: "Sad", img: "https://via.placeholder.com/150" },
-    { text: "Tired", img: "https://via.placeholder.com/150" }
-  ]
+const data = {
+
+home: [
+  "I","me","you","want",
+  "help","go","stop","more"
+],
+
+food: [
+  "eat","drink","cookie","crackers",
+  "pizza","chips","popcorn","snack"
+],
+
+people: [
+  "mom","dad","grandma","grandpa",
+  "friend","baby","teacher","family"
+],
+
+actions: [
+  "go","help","open","play",
+  "read","stop","sleep","eat"
+]
+
 };
 
-function loadCategory(name) {
+function load(page){
   const grid = document.getElementById("grid");
   grid.innerHTML = "";
 
-  categories[name].forEach(item => {
-    const tile = document.createElement("div");
-    tile.className = "tile";
+  data[page].forEach(word=>{
+    const div = document.createElement("div");
+    div.className = "tile";
+    div.innerText = word;
 
-    tile.innerHTML = `
-      <img src="${item.img}">
-      <p>${item.text}</p>
-    `;
+    div.onclick = ()=>{
+      sentence.push(word);
+      update();
+      speakWord(word);
+    };
 
-    tile.onclick = () => addWord(item.text);
-
-    grid.appendChild(tile);
+    grid.appendChild(div);
   });
 }
 
-function addWord(word) {
-  sentence.push(word);
+function update(){
   document.getElementById("sentence").innerText = sentence.join(" ");
 }
 
-function speakSentence() {
-  const text = sentence.join(" ");
-  const speech = new SpeechSynthesisUtterance(text);
+function speak(){
+  const speech = new SpeechSynthesisUtterance(sentence.join(" "));
   speechSynthesis.speak(speech);
 }
 
-function clearSentence() {
-  sentence = [];
-  document.getElementById("sentence").innerText = "";
+function speakWord(word){
+  const speech = new SpeechSynthesisUtterance(word);
+  speechSynthesis.speak(speech);
 }
 
-// load default
-loadCategory('needs');
+function clearSentence(){
+  sentence = [];
+  update();
+}
+
+load('home');
 </script>
 
 </body>
