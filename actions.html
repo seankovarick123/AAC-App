@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body { margin:0; }
+
+.container {
+  position: relative;
+}
+
+.bg {
+  width: 100%;
+}
+
+.tile {
+  position: absolute;
+  background: rgba(0,0,0,0);
+  border: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <img src="Actions.jpeg" class="bg">
+
+  <!-- BACK -->
+  <button class="tile" style="top:2%; left:2%; width:18%; height:10%;" onclick="go('index.html')"></button>
+
+  <!-- TOP ROW -->
+  <button class="tile" style="top:30%; left:5%; width:18%; height:12%;" onclick="speak('answer')"></button>
+  <button class="tile" style="top:30%; left:25%; width:18%; height:12%;" onclick="speak('buy')"></button>
+  <button class="tile" style="top:30%; left:45%; width:18%; height:12%;" onclick="speak('call')"></button>
+  <button class="tile" style="top:30%; left:65%; width:18%; height:12%;" onclick="speak('clean')"></button>
+
+  <!-- SECOND ROW -->
+  <button class="tile" style="top:45%; left:5%; width:18%; height:12%;" onclick="speak('cook')"></button>
+  <button class="tile" style="top:45%; left:25%; width:18%; height:12%;" onclick="speak('dance')"></button>
+  <button class="tile" style="top:45%; left:45%; width:18%; height:12%;" onclick="speak('draw')"></button>
+  <button class="tile" style="top:45%; left:65%; width:18%; height:12%;" onclick="speak('drink')"></button>
+
+</div>
+
+<script>
+function speak(word){
+  speechSynthesis.speak(new SpeechSynthesisUtterance(word));
+}
+
+function go(page){
+  window.location.href = page;
+}
+</script>
+
+</body>
+</html>
