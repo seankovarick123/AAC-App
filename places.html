@@ -2,18 +2,11 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <style>
 body { margin:0; }
-
 .container { position: relative; }
+.bg { width: 100%; display: block; }
 
-.bg {
-  width: 100%;
-  display: block;
-}
-
-/* EXACT SAME GRID AS HOME */
 .grid {
   position: absolute;
   top: 12%;
@@ -25,13 +18,9 @@ body { margin:0; }
   grid-template-rows: repeat(6,1fr);
 }
 
-.cell {
-  width:100%;
-  height:100%;
-}
+.cell { width:100%; height:100%; }
 </style>
 </head>
-
 <body>
 
 <div class="container">
@@ -40,82 +29,39 @@ body { margin:0; }
 </div>
 
 <script>
-function speak(text) {
-  const synth = window.speechSynthesis;
+function speak(t){ speechSynthesis.cancel(); speechSynthesis.speak(new SpeechSynthesisUtterance(t)); }
+function goHome(){ location.href="index.html"; }
 
-  if (synth.getVoices().length === 0) {
-    synth.onvoiceschanged = () => speak(text);
-    return;
-  }
-
-  const msg = new SpeechSynthesisUtterance(text);
-  synth.cancel();
-  synth.speak(msg);
-}
-
-function goHome(){
-  window.location.href = "index.html";
-}
-
-const columns = 10;
-const rows = 6;
-
-// PLACES TILE MAP
 const actions = {
-  // TOP ROW
-  "1-1": "HOME",
-  "2-1": "home",
-  "3-1": "school",
-  "4-1": "store",
-  "5-1": "park",
-  "6-1": "hospital",
-  "7-1": "restaurant",
-  "8-1": "bathroom",
-  "9-1": "bedroom",
-  "10-1": "kitchen",
+  "1-1":"HOME","2-1":"home","3-1":"school","4-1":"store","5-1":"park",
+  "6-1":"hospital","7-1":"restaurant","8-1":"bathroom","9-1":"bedroom","10-1":"kitchen",
 
-  // SECOND ROW
-  "1-2": "living room",
-  "2-2": "outside",
-  "3-2": "playground",
-  "4-2": "car",
-  "5-2": "bus",
-  "6-2": "mall",
-  "7-2": "school office",
-  "8-2": "classroom",
+  "1-2":"living room","2-2":"outside","3-2":"playground","4-2":"car","5-2":"bus",
 
-  // THIRD ROW (phrases)
-  "1-3": "I want to go home",
-  "2-3": "take me to school",
-  "3-3": "I want to go outside",
-  "4-3": "let's go somewhere",
-  "5-3": "I need the bathroom"
+  "1-3":"I want to go home","2-3":"take me to school","3-3":"I want to go outside","4-3":"I need the bathroom"
 };
 
-const grid = document.getElementById("grid");
+buildGrid(actions);
 
-for (let r = 1; r <= rows; r++) {
-  for (let c = 1; c <= columns; c++) {
+function buildGrid(actions){
+  const grid = document.getElementById("grid");
+  for(let r=1;r<=6;r++){
+    for(let c=1;c<=10;c++){
+      let cell=document.createElement("div");
+      cell.className="cell";
+      cell.style.gridColumn=c;
+      cell.style.gridRow=r;
 
-    const cell = document.createElement("div");
-    cell.className = "cell";
-    cell.style.gridColumn = c;
-    cell.style.gridRow = r;
-
-    const key = `${c}-${r}`;
-
-    if (actions[key]) {
-      if (actions[key] === "HOME") {
-        cell.onclick = goHome;
-      } else {
-        cell.onclick = () => speak(actions[key]);
+      let key=`${c}-${r}`;
+      if(actions[key]){
+        if(actions[key]==="HOME"){ cell.onclick=goHome; }
+        else{ cell.onclick=()=>speak(actions[key]); }
       }
-    }
 
-    grid.appendChild(cell);
+      grid.appendChild(cell);
+    }
   }
 }
 </script>
-
 </body>
 </html>
