@@ -2,9 +2,115 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body { margin:0; }
+
+.container { position: relative; }
+
+.bg {
+  width: 100%;
+  display: block;
+}
+
+.grid {
+  position: absolute;
+  top: 12%;
+  left: 0;
+  width: 100%;
+  height: 88%;
+  display: grid;
+  grid-template-columns: repeat(10,1fr);
+  grid-template-rows: repeat(6,1fr);
+}
+
+.cell {
+  width:100%;
+  height:100%;
+}
+</style>
 </head>
 
-<body onclick="say('youtube')">
-<script src="app.js"></script>
+<body>
+
+<div class="container">
+  <img src="watch2.png" class="bg">
+  <div class="grid" id="grid"></div>
+</div>
+
+<script>
+function speak(text) {
+  const synth = window.speechSynthesis;
+
+  if (synth.getVoices().length === 0) {
+    synth.onvoiceschanged = () => speak(text);
+    return;
+  }
+
+  const msg = new SpeechSynthesisUtterance(text);
+  synth.cancel();
+  synth.speak(msg);
+}
+
+function goBack(){
+  window.location.href = "watch.html";
+}
+
+function goHome(){
+  window.location.href = "index.html";
+}
+
+const columns = 10;
+const rows = 6;
+
+const actions = {
+  // TOP ROW
+  "1-1": "BACK",
+  "2-1": "HOME",
+  "3-1": "YouTube Kids",
+  "4-1": "music",
+  "5-1": "videos",
+  "6-1": "search",
+
+  // SECOND ROW
+  "1-2": "I want to watch YouTube",
+  "2-2": "play video",
+  "3-2": "next video",
+  "4-2": "skip",
+  "5-2": "pause",
+  "6-2": "play"
+};
+
+const grid = document.getElementById("grid");
+
+for (let r = 1; r <= rows; r++) {
+  for (let c = 1; c <= columns; c++) {
+
+    const cell = document.createElement("div");
+    cell.className = "cell";
+    cell.style.gridColumn = c;
+    cell.style.gridRow = r;
+
+    const key = `${c}-${r}`;
+
+    if (actions[key]) {
+
+      if (actions[key] === "BACK") {
+        cell.onclick = goBack;
+
+      } else if (actions[key] === "HOME") {
+        cell.onclick = goHome;
+
+      } else {
+        cell.onclick = () => speak(actions[key]);
+      }
+
+    }
+
+    grid.appendChild(cell);
+  }
+}
+</script>
+
 </body>
 </html>
