@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body { margin:0; }
+body { margin:0; font-family: sans-serif; }
 
 .container { position: relative; }
 
@@ -13,6 +13,7 @@ body { margin:0; }
   display: block;
 }
 
+/* SAME GRID YOU ALIGNED */
 .grid {
   position: absolute;
   top: 12%;
@@ -26,9 +27,14 @@ body { margin:0; }
   grid-template-rows: repeat(6, 1fr);
 }
 
+/* NUMBERED CELLS */
 .cell {
-  width: 100%;
-  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: red;
+  border: 1px solid rgba(255,0,0,0.3);
 }
 </style>
 </head>
@@ -38,39 +44,25 @@ body { margin:0; }
 <div class="container">
   <img src="actions.png" class="bg">
 
-  <div class="grid">
+  <div class="grid" id="grid"></div>
 
-    <!-- HOME -->
-    <div class="cell" style="grid-column:1; grid-row:1;" onclick="goHome()"></div>
-
-    <!-- ROW 1 -->
-    <div class="cell" style="grid-column:2; grid-row:1;" onclick="speak('answer')"></div>
-    <div class="cell" style="grid-column:3; grid-row:1;" onclick="speak('buy')"></div>
-    <div class="cell" style="grid-column:4; grid-row:1;" onclick="speak('call')"></div>
-    <div class="cell" style="grid-column:5; grid-row:1;" onclick="speak('clean')"></div>
-
-    <!-- ROW 2 -->
-    <div class="cell" style="grid-column:2; grid-row:2;" onclick="speak('dance')"></div>
-    <div class="cell" style="grid-column:3; grid-row:2;" onclick="speak('find')"></div>
-    <div class="cell" style="grid-column:4; grid-row:2;" onclick="speak('feel')"></div>
-    <div class="cell" style="grid-column:5; grid-row:2;" onclick="speak('draw')"></div>
-
-  </div>
 </div>
 
 <script>
-function goHome(){
-  window.location.href = "index.html";
+// BUILD 60 CELLS AUTOMATICALLY
+const grid = document.getElementById("grid");
+
+for (let i = 1; i <= 60; i++) {
+  const cell = document.createElement("div");
+  cell.className = "cell";
+  cell.innerText = i;
+  cell.onclick = () => speak(i);
+  grid.appendChild(cell);
 }
 
+// SPEECH
 function speak(word){
-  const msg = new SpeechSynthesisUtterance();
-  msg.text = word;
-
-  msg.volume = 1;
-  msg.rate = 1;
-  msg.pitch = 1;
-
+  const msg = new SpeechSynthesisUtterance(word);
   window.speechSynthesis.cancel();
   window.speechSynthesis.speak(msg);
 }
