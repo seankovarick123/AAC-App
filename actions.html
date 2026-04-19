@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body { margin:0; font-family: sans-serif; }
+body { margin:0; }
 
 .container { position: relative; }
 
@@ -13,7 +13,6 @@ body { margin:0; font-family: sans-serif; }
   display: block;
 }
 
-/* SAME GRID YOU ALIGNED */
 .grid {
   position: absolute;
   top: 12%;
@@ -27,14 +26,9 @@ body { margin:0; font-family: sans-serif; }
   grid-template-rows: repeat(6, 1fr);
 }
 
-/* NUMBERED CELLS */
 .cell {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  color: red;
-  border: 1px solid rgba(255,0,0,0.3);
+  width: 100%;
+  height: 100%;
 }
 </style>
 </head>
@@ -44,23 +38,34 @@ body { margin:0; font-family: sans-serif; }
 <div class="container">
   <img src="actions.png" class="bg">
 
-  <div class="grid" id="grid"></div>
+  <div class="grid">
 
+    <!-- ROW 1 (LOCKED CORRECT) -->
+
+    <!-- HOME -->
+    <div class="cell" style="grid-column:1; grid-row:1;" onclick="goHome()"></div>
+
+    <!-- ACTION WORDS -->
+    <div class="cell" style="grid-column:2; grid-row:1;" onclick="speak('answer')"></div>
+    <div class="cell" style="grid-column:3; grid-row:1;" onclick="speak('buy')"></div>
+    <div class="cell" style="grid-column:4; grid-row:1;" onclick="speak('call')"></div>
+    <div class="cell" style="grid-column:5; grid-row:1;" onclick="speak('clean')"></div>
+    <div class="cell" style="grid-column:6; grid-row:1;" onclick="speak('cook')"></div>
+    <div class="cell" style="grid-column:7; grid-row:1;" onclick="speak('color')"></div>
+    <div class="cell" style="grid-column:8; grid-row:1;" onclick="speak('close')"></div>
+    <div class="cell" style="grid-column:9; grid-row:1;" onclick="speak('cuddle')"></div>
+    <div class="cell" style="grid-column:10; grid-row:1;" onclick="speak('give')"></div>
+
+    <!-- (rest of grid will be filled next) -->
+
+  </div>
 </div>
 
 <script>
-// BUILD 60 CELLS AUTOMATICALLY
-const grid = document.getElementById("grid");
-
-for (let i = 1; i <= 60; i++) {
-  const cell = document.createElement("div");
-  cell.className = "cell";
-  cell.innerText = i;
-  cell.onclick = () => speak(i);
-  grid.appendChild(cell);
+function goHome(){
+  window.location.href = "index.html";
 }
 
-// SPEECH
 function speak(word){
   const msg = new SpeechSynthesisUtterance(word);
   window.speechSynthesis.cancel();
