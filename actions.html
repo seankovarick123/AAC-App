@@ -17,20 +17,23 @@ body { margin:0; }
 /* GRID OVERLAY */
 .grid {
   position: absolute;
-  top: 18%;      /* adjust once */
-  left: 6%;      /* adjust once */
-  width: 88%;
-  height: 72%;
+
+  /* YOU WILL ADJUST THESE 4 NUMBERS ONLY */
+  top: 15%;
+  left: 4%;
+  width: 92%;
+  height: 78%;
 
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 1fr;
-  gap: 6px;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+
+  gap: 2px;
 }
 
-/* EACH BOX */
+/* EACH TILE BOX */
 .cell {
-  border: 2px solid red;
+  border: 1px solid red;
   background: rgba(255,0,0,0.15);
 }
 </style>
@@ -43,29 +46,30 @@ body { margin:0; }
 
   <div class="grid">
 
+    <!-- 60 CELLS -->
     <!-- ROW 1 -->
-    <div class="cell"></div>
-    <div class="cell"></div>
-    <div class="cell"></div>
-    <div class="cell"></div>
+    <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+    <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
 
     <!-- ROW 2 -->
-    <div class="cell"></div>
-    <div class="cell"></div>
-    <div class="cell"></div>
-    <div class="cell"></div>
+    <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+    <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
 
     <!-- ROW 3 -->
-    <div class="cell"></div>
-    <div class="cell"></div>
-    <div class="cell"></div>
-    <div class="cell"></div>
+    <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+    <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
 
     <!-- ROW 4 -->
-    <div class="cell"></div>
-    <div class="cell"></div>
-    <div class="cell"></div>
-    <div class="cell"></div>
+    <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+    <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+
+    <!-- ROW 5 -->
+    <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+    <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+
+    <!-- ROW 6 -->
+    <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+    <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
 
   </div>
 
