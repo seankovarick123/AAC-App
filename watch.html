@@ -2,57 +2,32 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <style>
 body { margin:0; }
-
 .container { position: relative; }
-
-.bg {
-  width: 100%;
-  display: block;
-}
-
+.bg { width:100%; }
 .grid {
-  position: absolute;
-  top: 12%;
-  left: 0;
-  width: 100%;
-  height: 88%;
-  z-index: 1000;
-
-  display: grid;
-  grid-template-columns: repeat(10,1fr);
-  grid-template-rows: repeat(6,1fr);
+  position:absolute; top:12%; width:100%; height:88%;
+  display:grid; grid-template-columns:repeat(10,1fr); grid-template-rows:repeat(6,1fr);
 }
-
-.cell {
-  width:100%;
-  height:100%;
-}
+.cell { width:100%; height:100%; }
 </style>
 </head>
 
 <body>
-
 <div class="container">
   <img src="watch.png" class="bg">
-
   <div class="grid">
 
-    <!-- HOME -->
     <div class="cell" style="grid-column:1;grid-row:1;" onclick="goHome()"></div>
 
-    <!-- DISNEY (just speaks for now) -->
     <div class="cell" style="grid-column:2;grid-row:1;" onclick="say('disney')"></div>
 
-    <!-- YOUTUBE → GOES TO WATCH2 -->
     <div class="cell" style="grid-column:3;grid-row:1;" onclick="go('youtube','watch2.html')"></div>
 
   </div>
 </div>
 
 <script src="app.js"></script>
-
 </body>
 </html>
