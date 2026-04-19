@@ -2,10 +2,16 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
 body { margin:0; }
+
 .container { position: relative; }
-.bg { width: 100%; display: block; }
+
+.bg {
+  width: 100%;
+  display: block;
+}
 
 .grid {
   position: absolute;
@@ -18,9 +24,13 @@ body { margin:0; }
   grid-template-rows: repeat(6,1fr);
 }
 
-.cell { width:100%; height:100%; }
+.cell {
+  width:100%;
+  height:100%;
+}
 </style>
 </head>
+
 <body>
 
 <div class="container">
@@ -29,39 +39,115 @@ body { margin:0; }
 </div>
 
 <script>
-function speak(t){ speechSynthesis.cancel(); speechSynthesis.speak(new SpeechSynthesisUtterance(t)); }
-function goHome(){ location.href="index.html"; }
+function speak(text){
+  speechSynthesis.cancel();
+  speechSynthesis.speak(new SpeechSynthesisUtterance(text));
+}
 
+function goHome(){
+  window.location.href = "index.html";
+}
+
+const columns = 10;
+const rows = 6;
+
+/* ✅ EXACT TILE MAP BASED ON YOUR IMAGE */
 const actions = {
-  "1-1":"HOME","2-1":"home","3-1":"school","4-1":"store","5-1":"park",
-  "6-1":"hospital","7-1":"restaurant","8-1":"bathroom","9-1":"bedroom","10-1":"kitchen",
 
-  "1-2":"living room","2-2":"outside","3-2":"playground","4-2":"car","5-2":"bus",
+/* ROW 1 */
+"1-1":"HOME",
+"2-1":"building",
+"3-1":"airport",
+"4-1":"aquarium",
+"5-1":"bank",
+"6-1":"place",
+"7-1":"bowling alley",
+"8-1":"restaurant",
+"9-1":"store",
+"10-1":"geography",
 
-  "1-3":"I want to go home","2-3":"take me to school","3-3":"I want to go outside","4-3":"I need the bathroom"
+/* ROW 2 */
+"1-2":"mine",
+"2-2":"outside",
+"3-2":"inside",
+"4-2":"near",
+"5-2":"far",
+"6-2":"here",
+"7-2":"there",
+"8-2":"where",
+"9-2":"LOCK",
+
+/* ROW 3 */
+"1-3":"go",
+"2-3":"come",
+"3-3":"leave",
+"4-3":"arrive",
+"5-3":"travel",
+"6-3":"drive",
+"7-3":"ride",
+"8-3":"walk",
+"9-3":"run",
+
+/* ROW 4 */
+"1-4":"home",
+"2-4":"school",
+"3-4":"work",
+"4-4":"park",
+"5-4":"store",
+"6-4":"restaurant",
+"7-4":"hospital",
+"8-4":"office",
+"9-4":"room",
+
+/* ROW 5 */
+"1-5":"city",
+"2-5":"state",
+"3-5":"country",
+"4-5":"world",
+"5-5":"map",
+"6-5":"street",
+"7-5":"road",
+"8-5":"highway",
+
+/* ROW 6 */
+"1-6":"I want to go",
+"2-6":"take me",
+"3-6":"let's go",
+"4-6":"I am here",
+"5-6":"I am lost",
+"6-6":"help me go",
+"10-6":"NEXT"
 };
 
-buildGrid(actions);
+const grid = document.getElementById("grid");
 
-function buildGrid(actions){
-  const grid = document.getElementById("grid");
-  for(let r=1;r<=6;r++){
-    for(let c=1;c<=10;c++){
-      let cell=document.createElement("div");
-      cell.className="cell";
-      cell.style.gridColumn=c;
-      cell.style.gridRow=r;
+for (let r = 1; r <= rows; r++) {
+  for (let c = 1; c <= columns; c++) {
 
-      let key=`${c}-${r}`;
-      if(actions[key]){
-        if(actions[key]==="HOME"){ cell.onclick=goHome; }
-        else{ cell.onclick=()=>speak(actions[key]); }
-      }
+    const cell = document.createElement("div");
+    cell.className = "cell";
+    cell.style.gridColumn = c;
+    cell.style.gridRow = r;
 
-      grid.appendChild(cell);
+    const key = `${c}-${r}`;
+
+    if (key === "1-1") {
+      cell.onclick = goHome;
     }
+    else if (actions[key] === "LOCK") {
+      // do nothing (or add lock behavior later)
+    }
+    else if (actions[key] === "NEXT") {
+      // change later if you have places2
+    }
+    else if (actions[key]) {
+      cell.onclick = () => speak(actions[key]);
+    }
+
+    grid.appendChild(cell);
   }
 }
 </script>
+
 </body>
 </html>
