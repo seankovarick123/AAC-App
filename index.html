@@ -10,27 +10,24 @@ body { margin:0; }
   position: relative;
 }
 
-/* IMAGE */
 .bg {
   width: 100%;
   display: block;
 }
 
-/* CLICK LAYER */
 .grid {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 999; /* VERY IMPORTANT */
+  z-index: 999;
 
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(6, 1fr);
 }
 
-/* CELLS */
 .cell {
   width: 100%;
   height: 100%;
@@ -45,8 +42,8 @@ body { margin:0; }
 
   <div class="grid">
 
-    <!-- TEST BUTTON (big area) -->
-    <div class="cell" style="grid-column:1 / span 10; grid-row:1 / span 6; background: rgba(255,0,0,0.2);" onclick="goWatch()"></div>
+    <!-- WATCH (test first) -->
+    <div class="cell" style="grid-column:4; grid-row:1; background: rgba(0,255,0,0.4);" onclick="goWatch()"></div>
 
   </div>
 </div>
