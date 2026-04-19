@@ -6,16 +6,13 @@
 <style>
 body { margin:0; }
 
-.container {
-  position: relative;
-}
+.container { position: relative; }
 
 .bg {
   width: 100%;
   display: block;
 }
 
-/* FINAL GRID (LOCKED) */
 .grid {
   position: absolute;
   top: 12%;
@@ -43,44 +40,46 @@ body { margin:0; }
 
   <div class="grid">
 
-    <!-- ROW 1 (top row) -->
-
     <!-- PEOPLE -->
-    <div class="cell" style="grid-column:2; grid-row:1;" onclick="goPeople()"></div>
+    <div class="cell" style="grid-column:2; grid-row:1;" onclick="go('people','people.html')"></div>
 
     <!-- ACTIONS -->
-    <div class="cell" style="grid-column:3; grid-row:1;" onclick="goActions()"></div>
+    <div class="cell" style="grid-column:3; grid-row:1;" onclick="go('actions','actions.html')"></div>
 
-    <!-- GO (WATCH) -->
-    <div class="cell" style="grid-column:4; grid-row:1;" onclick="goWatch()"></div>
+    <!-- GO -->
+    <div class="cell" style="grid-column:4; grid-row:1;" onclick="go('go','watch.html')"></div>
 
     <!-- PLACES -->
-    <div class="cell" style="grid-column:5; grid-row:1;" onclick="goPlaces()"></div>
+    <div class="cell" style="grid-column:5; grid-row:1;" onclick="go('places','places.html')"></div>
 
     <!-- READ -->
-    <div class="cell" style="grid-column:7; grid-row:1;" onclick="goRead()"></div>
+    <div class="cell" style="grid-column:7; grid-row:1;" onclick="go('read','read.html')"></div>
 
     <!-- YOUTUBE -->
-    <div class="cell" style="grid-column:8; grid-row:1;" onclick="goWatch2()"></div>
+    <div class="cell" style="grid-column:8; grid-row:1;" onclick="go('youtube','watch2.html')"></div>
 
     <!-- EAT -->
-    <div class="cell" style="grid-column:9; grid-row:1;" onclick="goFood()"></div>
+    <div class="cell" style="grid-column:9; grid-row:1;" onclick="go('eat','food.html')"></div>
 
     <!-- PLAY -->
-    <div class="cell" style="grid-column:10; grid-row:1;" onclick="goPlay()"></div>
+    <div class="cell" style="grid-column:10; grid-row:1;" onclick="go('play','play2.html')"></div>
 
   </div>
 </div>
 
 <script>
-function goActions(){ window.location.href = "actions.html"; }
-function goPlaces(){ window.location.href = "places.html"; }
-function goFood(){ window.location.href = "food.html"; }
-function goPlay(){ window.location.href = "play2.html"; }
-function goWatch(){ window.location.href = "watch.html"; }
-function goWatch2(){ window.location.href = "watch2.html"; }
-function goPeople(){ window.location.href = "people.html"; }
-function goRead(){ window.location.href = "read.html"; }
+function speak(word){
+  const msg = new SpeechSynthesisUtterance(word);
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(msg);
+}
+
+function go(word, page){
+  speak(word);
+  setTimeout(() => {
+    window.location.href = page;
+  }, 300);
+}
 </script>
 
 </body>
