@@ -4,31 +4,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body { margin:0; font-family: sans-serif; }
+body { margin:0; }
 
-.container {
-  position: relative;
-}
+.container { position: relative; }
 
 .bg {
   width: 100%;
   display: block;
 }
 
-/* PERFECT GRID */
+/* SAME GRID AS HOME */
 .grid {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 12%;
+  left: 0%;
   width: 100%;
-  height: 100%;
+  height: 88%;
+  z-index: 999;
 
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(6, 1fr);
 }
 
-/* CLICK AREAS */
 .cell {
   width: 100%;
   height: 100%;
@@ -39,92 +37,28 @@ body { margin:0; font-family: sans-serif; }
 <body>
 
 <div class="container">
-  <img src="Actions.png" class="bg">
+  <img src="actions.png" class="bg">
 
   <div class="grid">
 
-    <!-- ROW 1 -->
-    <div class="cell" onclick="goHome()"></div>
-    <div class="cell" onclick="speak('answer')"></div>
-    <div class="cell" onclick="speak('buy')"></div>
-    <div class="cell" onclick="speak('call')"></div>
-    <div class="cell" onclick="speak('clean')"></div>
-    <div class="cell" onclick="speak('cook')"></div>
-    <div class="cell" onclick="speak('color')"></div>
-    <div class="cell" onclick="speak('close')"></div>
-    <div class="cell" onclick="speak('cuddle')"></div>
-    <div class="cell" onclick="speak('give')"></div>
+    <!-- HOME BUTTON -->
+    <div class="cell" style="grid-column:1; grid-row:1;" onclick="goHome()"></div>
 
-    <!-- ROW 2 -->
-    <div class="cell"></div>
-    <div class="cell" onclick="speak('dance')"></div>
-    <div class="cell" onclick="speak('find')"></div>
-    <div class="cell" onclick="speak('feel')"></div>
-    <div class="cell" onclick="speak('draw')"></div>
-    <div class="cell" onclick="speak('hurt')"></div>
-    <div class="cell" onclick="speak('hear')"></div>
-    <div class="cell" onclick="speak('hug')"></div>
-    <div class="cell" onclick="speak('listen')"></div>
-    <div class="cell" onclick="speak('look')"></div>
-
-    <!-- ROW 3 -->
-    <div class="cell" onclick="speak('would')"></div>
-    <div class="cell" onclick="speak('are')"></div>
-    <div class="cell" onclick="speak('was')"></div>
-    <div class="cell" onclick="speak('were')"></div>
-    <div class="cell" onclick="speak('jump')"></div>
-    <div class="cell" onclick="speak('learn')"></div>
-    <div class="cell" onclick="speak('leave')"></div>
-    <div class="cell" onclick="speak('love')"></div>
-    <div class="cell" onclick="speak('make')"></div>
-    <div class="cell" onclick="speak('need')"></div>
-
-    <!-- ROW 4 -->
-    <div class="cell" onclick="speak('will')"></div>
-    <div class="cell" onclick="speak('could')"></div>
-    <div class="cell" onclick="speak('tickles')"></div>
-    <div class="cell" onclick="speak('pull')"></div>
-    <div class="cell" onclick="speak('push')"></div>
-    <div class="cell" onclick="speak('remember')"></div>
-    <div class="cell" onclick="speak('ride')"></div>
-    <div class="cell" onclick="speak('say')"></div>
-    <div class="cell" onclick="speak('see')"></div>
-    <div class="cell" onclick="speak('show')"></div>
-
-    <!-- ROW 5 -->
-    <div class="cell" onclick="speak('have')"></div>
-    <div class="cell" onclick="speak('had')"></div>
-    <div class="cell" onclick="speak('run')"></div>
-    <div class="cell" onclick="speak('shop')"></div>
-    <div class="cell" onclick="speak('sing')"></div>
-    <div class="cell" onclick="speak('sit')"></div>
-    <div class="cell" onclick="speak('sleep')"></div>
-    <div class="cell" onclick="speak('talk')"></div>
-    <div class="cell" onclick="speak('walk')"></div>
-    <div class="cell"></div>
-
-    <!-- ROW 6 -->
-    <div class="cell" onclick="speak('piggy back ride')"></div>
-    <div class="cell" onclick="speak('lets')"></div>
-    <div class="cell" onclick="speak('dont')"></div>
-    <div class="cell" onclick="speak('stand')"></div>
-    <div class="cell" onclick="speak('swim')"></div>
-    <div class="cell" onclick="speak('swing')"></div>
-    <div class="cell" onclick="speak('write')"></div>
-    <div class="cell" onclick="speak('wash')"></div>
-    <div class="cell" onclick="speak('wear')"></div>
-    <div class="cell" onclick="speak('drive')"></div>
+    <!-- EXAMPLES (you can expand later) -->
+    <div class="cell" style="grid-column:2; grid-row:1;" onclick="speak('answer')"></div>
+    <div class="cell" style="grid-column:3; grid-row:1;" onclick="speak('buy')"></div>
+    <div class="cell" style="grid-column:4; grid-row:1;" onclick="speak('call')"></div>
 
   </div>
 </div>
 
 <script>
-function speak(word){
-  speechSynthesis.speak(new SpeechSynthesisUtterance(word));
-}
-
 function goHome(){
   window.location.href = "index.html";
+}
+
+function speak(word){
+  speechSynthesis.speak(new SpeechSynthesisUtterance(word));
 }
 </script>
 
