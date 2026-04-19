@@ -13,7 +13,6 @@ body { margin:0; }
   display: block;
 }
 
-/* SAME GRID AS HOME (already aligned) */
 .grid {
   position: absolute;
   top: 12%;
@@ -41,7 +40,7 @@ body { margin:0; }
 
   <div class="grid">
 
-    <!-- HOME BUTTON -->
+    <!-- HOME -->
     <div class="cell" style="grid-column:1; grid-row:1;" onclick="goHome()"></div>
 
     <!-- ROW 1 -->
@@ -56,12 +55,6 @@ body { margin:0; }
     <div class="cell" style="grid-column:4; grid-row:2;" onclick="speak('feel')"></div>
     <div class="cell" style="grid-column:5; grid-row:2;" onclick="speak('draw')"></div>
 
-    <!-- ROW 3 -->
-    <div class="cell" style="grid-column:2; grid-row:3;" onclick="speak('jump')"></div>
-    <div class="cell" style="grid-column:3; grid-row:3;" onclick="speak('learn')"></div>
-    <div class="cell" style="grid-column:4; grid-row:3;" onclick="speak('leave')"></div>
-    <div class="cell" style="grid-column:5; grid-row:3;" onclick="speak('love')"></div>
-
   </div>
 </div>
 
@@ -71,7 +64,13 @@ function goHome(){
 }
 
 function speak(word){
-  const msg = new SpeechSynthesisUtterance(word);
+  const msg = new SpeechSynthesisUtterance();
+  msg.text = word;
+
+  msg.volume = 1;
+  msg.rate = 1;
+  msg.pitch = 1;
+
   window.speechSynthesis.cancel();
   window.speechSynthesis.speak(msg);
 }
