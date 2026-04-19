@@ -2,32 +2,116 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
 body { margin:0; }
+
 .container { position: relative; }
-.bg { width:100%; }
-.grid {
-  position:absolute; top:12%; width:100%; height:88%;
-  display:grid; grid-template-columns:repeat(10,1fr); grid-template-rows:repeat(6,1fr);
+
+.bg {
+  width: 100%;
+  display: block;
 }
-.cell { width:100%; height:100%; }
+
+.grid {
+  position: absolute;
+  top: 12%;
+  left: 0;
+  width: 100%;
+  height: 88%;
+  display: grid;
+  grid-template-columns: repeat(10,1fr);
+  grid-template-rows: repeat(6,1fr);
+}
+
+.cell {
+  width:100%;
+  height:100%;
+}
 </style>
 </head>
 
 <body>
+
 <div class="container">
   <img src="watch.png" class="bg">
-  <div class="grid">
-
-    <div class="cell" style="grid-column:1;grid-row:1;" onclick="goHome()"></div>
-
-    <div class="cell" style="grid-column:2;grid-row:1;" onclick="say('disney')"></div>
-
-    <div class="cell" style="grid-column:3;grid-row:1;" onclick="go('youtube','watch2.html')"></div>
-
-  </div>
+  <div class="grid" id="grid"></div>
 </div>
 
-<script src="app.js"></script>
+<script>
+function speak(text) {
+  const synth = window.speechSynthesis;
+
+  if (synth.getVoices().length === 0) {
+    synth.onvoiceschanged = () => speak(text);
+    return;
+  }
+
+  const msg = new SpeechSynthesisUtterance(text);
+  synth.cancel();
+  synth.speak(msg);
+}
+
+function goHome(){
+  window.location.href = "index.html";
+}
+
+function goWatch2(){
+  window.location.href = "watch2.html";
+}
+
+const columns = 10;
+const rows = 6;
+
+const actions = {
+  // TOP ROW
+  "1-1": "HOME",
+  "2-1": "YouTube",
+  "3-1": "TV",
+  "4-1": "movie",
+  "5-1": "cartoon",
+  "6-1": "show",
+
+  // SECOND ROW
+  "1-2": "I want to watch",
+  "2-2": "turn it on",
+  "3-2": "change channel",
+  "4-2": "pause",
+  "5-2": "play",
+  "6-2": "volume up",
+  "7-2": "volume down"
+};
+
+const grid = document.getElementById("grid");
+
+for (let r = 1; r <= rows; r++) {
+  for (let c = 1; c <= columns; c++) {
+
+    const cell = document.createElement("div");
+    cell.className = "cell";
+    cell.style.gridColumn = c;
+    cell.style.gridRow = r;
+
+    const key = `${c}-${r}`;
+
+    if (actions[key]) {
+
+      if (actions[key] === "HOME") {
+        cell.onclick = goHome;
+
+      } else if (actions[key] === "YouTube") {
+        cell.onclick = goWatch2;
+
+      } else {
+        cell.onclick = () => speak(actions[key]);
+      }
+
+    }
+
+    grid.appendChild(cell);
+  }
+}
+</script>
+
 </body>
 </html>
