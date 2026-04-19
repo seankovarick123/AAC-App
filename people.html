@@ -38,16 +38,27 @@ body { margin:0; }
 
   <div class="grid">
 
-    <!-- HOME BUTTON -->
+    <!-- HOME -->
     <div class="cell" style="grid-column:1;grid-row:1;" onclick="goHome()"></div>
 
     <!-- TEST TILE -->
-    <div class="cell" style="grid-column:2;grid-row:1;" onclick="say('mom')"></div>
+    <div class="cell" style="grid-column:2;grid-row:1;" onclick="speakNow('mom')"></div>
 
   </div>
 </div>
 
-<script src="app.js"></script>
+<script>
+// LOCAL SPEECH (bypasses app.js issues)
+function speakNow(word){
+  const msg = new SpeechSynthesisUtterance(word);
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(msg);
+}
+
+function goHome(){
+  window.location.href = "index.html";
+}
+</script>
 
 </body>
 </html>
