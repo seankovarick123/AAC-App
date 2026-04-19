@@ -14,15 +14,24 @@ body { margin:0; }
   width: 100%;
 }
 
-/* GRID OUTLINE (you will adjust this) */
+/* GRID OVERLAY */
 .grid {
   position: absolute;
-  top: 0%;
-  left: 0%;
-  width: 100%;
-  height: 100%;
-  border: 3px solid red;
-  box-sizing: border-box;
+  top: 18%;      /* adjust once */
+  left: 6%;      /* adjust once */
+  width: 88%;
+  height: 72%;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 6px;
+}
+
+/* EACH BOX */
+.cell {
+  border: 2px solid red;
+  background: rgba(255,0,0,0.15);
 }
 </style>
 </head>
@@ -32,8 +41,33 @@ body { margin:0; }
 <div class="container">
   <img src="Actions.jpeg" class="bg">
 
-  <!-- GRID BOX -->
-  <div class="grid"></div>
+  <div class="grid">
+
+    <!-- ROW 1 -->
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+
+    <!-- ROW 2 -->
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+
+    <!-- ROW 3 -->
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+
+    <!-- ROW 4 -->
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+
+  </div>
 
 </div>
 
