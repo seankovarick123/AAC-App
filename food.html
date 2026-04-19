@@ -4,34 +4,40 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body { margin:0; }
+html, body {
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+}
 
 .container {
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  width:100%;
+  height:100%;
 }
 
-/* FULL SCREEN IMAGE FIX */
+/* FORCE IMAGE FULLSCREEN */
 .bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position:absolute;
+  top:0;
+  left:0;
+  width:100vw;
+  height:100vh;
   object-fit: fill;
 }
 
-/* SAME GRID AS ALL OTHER PAGES */
+/* GRID OVERLAY */
 .grid {
-  position: absolute;
-  top: 12%;
-  left: 0;
-  width: 100%;
-  height: 88%;
-  display: grid;
-  grid-template-columns: repeat(10,1fr);
-  grid-template-rows: repeat(6,1fr);
+  position:absolute;
+  top:12%;
+  left:0;
+  width:100%;
+  height:88%;
+  display:grid;
+  grid-template-columns:repeat(10,1fr);
+  grid-template-rows:repeat(6,1fr);
 }
 
 .cell {
@@ -58,53 +64,10 @@ function goHome(){
   window.location.href = "index.html";
 }
 
-const columns = 10;
-const rows = 6;
-
-/* BASIC WORKING MAP (we can fine-tune later like People) */
-const actions = {
-
-  // ROW 1
-  "1-1":"HOME",
-  "2-1":"eat",
-  "3-1":"drink",
-  "4-1":"food",
-  "5-1":"snack",
-  "6-1":"meal",
-  "7-1":"hungry",
-  "8-1":"thirsty",
-
-  // ROW 2
-  "1-2":"apple",
-  "2-2":"banana",
-  "3-2":"orange",
-  "4-2":"grapes",
-  "5-2":"strawberry",
-
-  // ROW 3
-  "1-3":"pizza",
-  "2-3":"burger",
-  "3-3":"fries",
-  "4-3":"chicken",
-  "5-3":"sandwich",
-
-  // ROW 4
-  "1-4":"water",
-  "2-4":"juice",
-  "3-4":"milk",
-  "4-4":"soda",
-
-  // ROW 5
-  "1-5":"I am hungry",
-  "2-5":"I want food",
-  "3-5":"I want a snack",
-  "4-5":"I am thirsty"
-};
-
 const grid = document.getElementById("grid");
 
-for (let r = 1; r <= rows; r++) {
-  for (let c = 1; c <= columns; c++) {
+for (let r = 1; r <= 6; r++) {
+  for (let c = 1; c <= 10; c++) {
 
     const cell = document.createElement("div");
     cell.className = "cell";
@@ -113,14 +76,10 @@ for (let r = 1; r <= rows; r++) {
 
     const key = `${c}-${r}`;
 
-    // HOME button
     if (key === "1-1") {
       cell.onclick = goHome;
-    }
-
-    // SPEAK
-    else if (actions[key]) {
-      cell.onclick = () => speak(actions[key]);
+    } else {
+      cell.onclick = () => speak(`food ${c}-${r}`);
     }
 
     grid.appendChild(cell);
