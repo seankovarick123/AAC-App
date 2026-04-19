@@ -2,16 +2,10 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <style>
 body { margin:0; }
-
 .container { position: relative; }
-
-.bg {
-  width: 100%;
-  display: block;
-}
+.bg { width: 100%; display: block; }
 
 .grid {
   position: absolute;
@@ -24,13 +18,9 @@ body { margin:0; }
   grid-template-rows: repeat(6,1fr);
 }
 
-.cell {
-  width:100%;
-  height:100%;
-}
+.cell { width:100%; height:100%; }
 </style>
 </head>
-
 <body>
 
 <div class="container">
@@ -39,84 +29,42 @@ body { margin:0; }
 </div>
 
 <script>
-function speak(text) {
-  const synth = window.speechSynthesis;
-
-  if (synth.getVoices().length === 0) {
-    synth.onvoiceschanged = () => speak(text);
-    return;
-  }
-
-  const msg = new SpeechSynthesisUtterance(text);
-  synth.cancel();
-  synth.speak(msg);
-}
-
-function goHome(){
-  window.location.href = "index.html";
-}
-
-const columns = 10;
-const rows = 6;
-
-/*
-👉 IMPORTANT:
-These positions MUST match your image layout.
-Right now this assumes your icons are arranged
-similar to the home page (left to right rows).
-*/
+function speak(t){ speechSynthesis.cancel(); speechSynthesis.speak(new SpeechSynthesisUtterance(t)); }
+function goHome(){ location.href="index.html"; }
 
 const actions = {
-  // TOP ROW
-  "1-1": "HOME",
-  "2-1": "mom",
-  "3-1": "dad",
-  "4-1": "brother",
-  "5-1": "sister",
-  "6-1": "grandma",
-  "7-1": "grandpa",
-  "8-1": "friend",
-  "9-1": "teacher",
-  "10-1": "doctor",
+  // ROW 1
+  "1-1":"HOME","2-1":"mom","3-1":"dad","4-1":"brother","5-1":"sister",
+  "6-1":"grandma","7-1":"grandpa","8-1":"friend","9-1":"teacher","10-1":"doctor",
 
-  // SECOND ROW
-  "1-2": "neighbor",
-  "2-2": "coach",
-  "3-2": "classmate",
-  "4-2": "caregiver",
-  "5-2": "baby",
+  // ROW 2
+  "1-2":"neighbor","2-2":"coach","3-2":"classmate","4-2":"caregiver","5-2":"baby",
 
-  // THIRD ROW (phrases)
-  "1-3": "I want to talk to someone",
-  "2-3": "call someone",
-  "3-3": "I miss someone",
-  "4-3": "help me find someone"
+  // ROW 3
+  "1-3":"I want to talk to someone","2-3":"call someone","3-3":"I miss someone","4-3":"help me find someone"
 };
 
-const grid = document.getElementById("grid");
+buildGrid(actions);
 
-for (let r = 1; r <= rows; r++) {
-  for (let c = 1; c <= columns; c++) {
+function buildGrid(actions){
+  const grid = document.getElementById("grid");
+  for(let r=1;r<=6;r++){
+    for(let c=1;c<=10;c++){
+      let cell=document.createElement("div");
+      cell.className="cell";
+      cell.style.gridColumn=c;
+      cell.style.gridRow=r;
 
-    const cell = document.createElement("div");
-    cell.className = "cell";
-    cell.style.gridColumn = c;
-    cell.style.gridRow = r;
-
-    const key = `${c}-${r}`;
-
-    if (actions[key]) {
-      if (actions[key] === "HOME") {
-        cell.onclick = goHome;
-      } else {
-        cell.onclick = () => speak(actions[key]);
+      let key=`${c}-${r}`;
+      if(actions[key]){
+        if(actions[key]==="HOME"){ cell.onclick=goHome; }
+        else{ cell.onclick=()=>speak(actions[key]); }
       }
-    }
 
-    grid.appendChild(cell);
+      grid.appendChild(cell);
+    }
   }
 }
 </script>
-
 </body>
 </html>
