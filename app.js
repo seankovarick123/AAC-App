@@ -4,12 +4,10 @@ function speak(word){
   window.speechSynthesis.speak(msg);
 }
 
-// ONLY SPEAK
 function say(word){
   speak(word);
 }
 
-// SPEAK + GO
 function go(word, page){
   speak(word);
   setTimeout(() => {
