@@ -34,20 +34,28 @@ function goHome(){ location.href="index.html"; }
 
 const actions = {
   // ROW 1
-  "1-1":"HOME","2-1":"mom","3-1":"dad","4-1":"brother","5-1":"sister",
-  "6-1":"grandma","7-1":"grandpa","8-1":"friend","9-1":"teacher","10-1":"doctor",
+  "1-1":"HOME","2-1":"people","3-1":"family","4-1":"mom","5-1":"dad","6-1":"Jayden","7-1":"grandma","8-1":"grandpa","9-1":"husband","10-1":"wife",
 
   // ROW 2
-  "1-2":"neighbor","2-2":"coach","3-2":"classmate","4-2":"caregiver","5-2":"baby",
+  "1-2":"mine","3-2":"Nannie","4-2":"Grandpa","5-2":"DD","6-2":"Nonno","7-2":"baby","8-2":"and",
 
   // ROW 3
-  "1-3":"I want to talk to someone","2-3":"call someone","3-3":"I miss someone","4-3":"help me find someone"
+  "1-3":"they","2-3":"their","3-3":"them","5-3":"Anna C","6-3":"Anna","7-3":"Uncle B","8-3":"big","9-3":"sister","10-3":"brother",
+
+  // ROW 4
+  "1-4":"she","2-4":"her","4-4":"friend","5-4":"Luca","6-4":"Gaga","7-4":"Danielle and Kyle","8-4":"little","9-4":"girl","10-4":"boy",
+
+  // ROW 5
+  "1-5":"he","2-5":"his","3-5":"him","6-5":"Nadia","9-5":"children","10-5":"child",
+
+  // ROW 6
+  "1-6":"we","2-6":"our","3-6":"us","4-6":"let's","6-6":"school people","7-6":"jobs","9-6":"kid"
 };
 
 buildGrid(actions);
 
 function buildGrid(actions){
-  const grid = document.getElementById("grid");
+  const grid=document.getElementById("grid");
   for(let r=1;r<=6;r++){
     for(let c=1;c<=10;c++){
       let cell=document.createElement("div");
