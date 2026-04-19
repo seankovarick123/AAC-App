@@ -1,5 +1,7 @@
 function speak(word){
   const msg = new SpeechSynthesisUtterance(word);
+  msg.rate = 1;
+  msg.pitch = 1;
   window.speechSynthesis.cancel();
   window.speechSynthesis.speak(msg);
 }
