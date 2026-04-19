@@ -2,16 +2,10 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <style>
 body { margin:0; }
-
 .container { position: relative; }
-
-.bg {
-  width: 100%;
-  display: block;
-}
+.bg { width: 100%; display: block; }
 
 .grid {
   position: absolute;
@@ -24,13 +18,9 @@ body { margin:0; }
   grid-template-rows: repeat(6,1fr);
 }
 
-.cell {
-  width:100%;
-  height:100%;
-}
+.cell { width:100%; height:100%; }
 </style>
 </head>
-
 <body>
 
 <div class="container">
@@ -39,79 +29,37 @@ body { margin:0; }
 </div>
 
 <script>
-function speak(text) {
-  const synth = window.speechSynthesis;
-
-  if (synth.getVoices().length === 0) {
-    synth.onvoiceschanged = () => speak(text);
-    return;
-  }
-
-  const msg = new SpeechSynthesisUtterance(text);
-  synth.cancel();
-  synth.speak(msg);
-}
-
-function goHome(){
-  window.location.href = "index.html";
-}
-
-function goWatch2(){
-  window.location.href = "watch2.html";
-}
-
-const columns = 10;
-const rows = 6;
+function speak(t){ speechSynthesis.cancel(); speechSynthesis.speak(new SpeechSynthesisUtterance(t)); }
+function goHome(){ location.href="index.html"; }
+function goWatch2(){ location.href="watch2.html"; }
 
 const actions = {
-  // TOP ROW
-  "1-1": "HOME",
-  "2-1": "YouTube",
-  "3-1": "TV",
-  "4-1": "movie",
-  "5-1": "cartoon",
-  "6-1": "show",
-
-  // SECOND ROW
-  "1-2": "I want to watch",
-  "2-2": "turn it on",
-  "3-2": "change channel",
-  "4-2": "pause",
-  "5-2": "play",
-  "6-2": "volume up",
-  "7-2": "volume down"
+  "1-1":"HOME","2-1":"YouTube","3-1":"TV","4-1":"movie","5-1":"cartoon","6-1":"show",
+  "1-2":"I want to watch","2-2":"pause","3-2":"play"
 };
 
-const grid = document.getElementById("grid");
+buildGrid(actions);
 
-for (let r = 1; r <= rows; r++) {
-  for (let c = 1; c <= columns; c++) {
+function buildGrid(actions){
+  const grid=document.getElementById("grid");
+  for(let r=1;r<=6;r++){
+    for(let c=1;c<=10;c++){
+      let cell=document.createElement("div");
+      cell.className="cell";
+      cell.style.gridColumn=c;
+      cell.style.gridRow=r;
 
-    const cell = document.createElement("div");
-    cell.className = "cell";
-    cell.style.gridColumn = c;
-    cell.style.gridRow = r;
-
-    const key = `${c}-${r}`;
-
-    if (actions[key]) {
-
-      if (actions[key] === "HOME") {
-        cell.onclick = goHome;
-
-      } else if (actions[key] === "YouTube") {
-        cell.onclick = goWatch2;
-
-      } else {
-        cell.onclick = () => speak(actions[key]);
+      let key=`${c}-${r}`;
+      if(actions[key]){
+        if(actions[key]==="HOME"){ cell.onclick=goHome; }
+        else if(actions[key]==="YouTube"){ cell.onclick=goWatch2; }
+        else{ cell.onclick=()=>speak(actions[key]); }
       }
 
+      grid.appendChild(cell);
     }
-
-    grid.appendChild(cell);
   }
 }
 </script>
-
 </body>
 </html>
