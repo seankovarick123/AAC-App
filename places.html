@@ -48,75 +48,33 @@ function goHome(){
   window.location.href = "index.html";
 }
 
+// optional next page later
+function goNext(){
+  // window.location.href = "places2.html";
+}
+
 const columns = 10;
 const rows = 6;
 
-/* ✅ EXACT TILE MAP BASED ON YOUR IMAGE */
 const actions = {
 
 /* ROW 1 */
-"1-1":"HOME",
-"2-1":"building",
-"3-1":"airport",
-"4-1":"aquarium",
-"5-1":"bank",
-"6-1":"place",
-"7-1":"bowling alley",
-"8-1":"restaurant",
-"9-1":"store",
-"10-1":"geography",
+"1-1":"HOME","2-1":"building","3-1":"airport","4-1":"aquarium","5-1":"bank","6-1":"place","7-1":"bowling alley","8-1":"restaurant","9-1":"store","10-1":"geography",
 
 /* ROW 2 */
-"1-2":"mine",
-"2-2":"outside",
-"3-2":"inside",
-"4-2":"near",
-"5-2":"far",
-"6-2":"here",
-"7-2":"there",
-"8-2":"where",
-"9-2":"LOCK",
+"1-2":"all places","2-2":"church","3-2":"doctor","4-2":"to","5-2":"grocery","6-2":"mall","7-2":"movie","8-2":"restaurant","9-2":"store",
 
 /* ROW 3 */
-"1-3":"go",
-"2-3":"come",
-"3-3":"leave",
-"4-3":"arrive",
-"5-3":"travel",
-"6-3":"drive",
-"7-3":"ride",
-"8-3":"walk",
-"9-3":"run",
+"1-3":"home","2-3":"house","3-3":"bathroom","4-3":"closet","5-3":"dining room","6-3":"kitchen","7-3":"living room","8-3":"room",
 
 /* ROW 4 */
-"1-4":"home",
-"2-4":"school",
-"3-4":"work",
-"4-4":"park",
-"5-4":"store",
-"6-4":"restaurant",
-"7-4":"hospital",
-"8-4":"office",
-"9-4":"room",
+"1-4":"outside","2-4":"beach","3-4":"camp","4-4":"farm","5-4":"garden","6-4":"jungle gym","7-4":"lake","8-4":"ocean","9-4":"park","10-4":"playground",
 
 /* ROW 5 */
-"1-5":"city",
-"2-5":"state",
-"3-5":"country",
-"4-5":"world",
-"5-5":"map",
-"6-5":"street",
-"7-5":"road",
-"8-5":"highway",
+"1-5":"pond","2-5":"pool","3-5":"river","4-5":"yard","5-5":"zoo","6-5":"baseball","7-5":"basketball","8-5":"football","9-5":"soccer",
 
 /* ROW 6 */
-"1-6":"I want to go",
-"2-6":"take me",
-"3-6":"let's go",
-"4-6":"I am here",
-"5-6":"I am lost",
-"6-6":"help me go",
-"10-6":"NEXT"
+"2-6":"school","3-6":"bus","4-6":"class","5-6":"library","6-6":"lunch","7-6":"therapy","8-6":"speech","9-6":"OT","10-6":"PT"
 };
 
 const grid = document.getElementById("grid");
@@ -131,15 +89,22 @@ for (let r = 1; r <= rows; r++) {
 
     const key = `${c}-${r}`;
 
+    // HOME button
     if (key === "1-1") {
       cell.onclick = goHome;
     }
-    else if (actions[key] === "LOCK") {
-      // do nothing (or add lock behavior later)
+
+    // LOCK tile (row 2 col 10)
+    else if (key === "10-2") {
+      // leave blank or add lock behavior later
     }
-    else if (actions[key] === "NEXT") {
-      // change later if you have places2
+
+    // NEXT arrow (row 5 col 10)
+    else if (key === "10-5") {
+      cell.onclick = goNext;
     }
+
+    // normal speech tiles
     else if (actions[key]) {
       cell.onclick = () => speak(actions[key]);
     }
