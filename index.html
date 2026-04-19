@@ -6,10 +6,18 @@
 body { margin:0; }
 .container { position: relative; }
 .bg { width: 100%; display:block; }
+
 .grid {
-  position:absolute; top:12%; left:0; width:100%; height:88%;
-  display:grid; grid-template-columns:repeat(10,1fr); grid-template-rows:repeat(6,1fr);
+  position:absolute;
+  top:12%;
+  left:0;
+  width:100%;
+  height:88%;
+  display:grid;
+  grid-template-columns:repeat(10,1fr);
+  grid-template-rows:repeat(6,1fr);
 }
+
 .cell { width:100%; height:100%; }
 </style>
 </head>
@@ -20,80 +28,90 @@ body { margin:0; }
   <div class="grid">
 
     <!-- ROW 1 -->
-    <div class="cell" style="grid-column:1;grid-row:1;" onclick="say('abc')"></div>
-    <div class="cell" style="grid-column:2;grid-row:1;" onclick="go('people','people.html')"></div>
-    <div class="cell" style="grid-column:3;grid-row:1;" onclick="say('question')"></div>
-    <div class="cell" style="grid-column:4;grid-row:1;" onclick="go('actions','actions.html')"></div>
-    <div class="cell" style="grid-column:5;grid-row:1;" onclick="goHome()"></div>
-    <div class="cell" style="grid-column:6;grid-row:1;" onclick="go('places','places.html')"></div>
-    <div class="cell" style="grid-column:7;grid-row:1;" onclick="say('time')"></div>
-    <div class="cell" style="grid-column:8;grid-row:1;" onclick="say('and')"></div>
-    <div class="cell" style="grid-column:9;grid-row:1;" onclick="say('describe')"></div>
-    <div class="cell" style="grid-column:10;grid-row:1;" onclick="say('good')"></div>
+    <div class="cell" style="grid-column:1;grid-row:1;" onclick="speak('abc')"></div>
+    <div class="cell" style="grid-column:2;grid-row:1;" onclick="go('people.html')"></div>
+    <div class="cell" style="grid-column:3;grid-row:1;" onclick="speak('question')"></div>
+    <div class="cell" style="grid-column:4;grid-row:1;" onclick="go('actions.html')"></div>
+    <div class="cell" style="grid-column:5;grid-row:1;" onclick="go('index.html')"></div>
+    <div class="cell" style="grid-column:6;grid-row:1;" onclick="go('places.html')"></div>
+    <div class="cell" style="grid-column:7;grid-row:1;" onclick="speak('time')"></div>
+    <div class="cell" style="grid-column:8;grid-row:1;" onclick="speak('and')"></div>
+    <div class="cell" style="grid-column:9;grid-row:1;" onclick="speak('describe')"></div>
+    <div class="cell" style="grid-column:10;grid-row:1;" onclick="speak('good')"></div>
 
     <!-- ROW 2 -->
-    <div class="cell" style="grid-column:1;grid-row:2;" onclick="say('clear')"></div>
-    <div class="cell" style="grid-column:2;grid-row:2;" onclick="say('I')"></div>
-    <div class="cell" style="grid-column:3;grid-row:2;" onclick="say('me')"></div>
+    <div class="cell" style="grid-column:1;grid-row:2;" onclick="speak('clear')"></div>
+    <div class="cell" style="grid-column:2;grid-row:2;" onclick="speak('I')"></div>
+    <div class="cell" style="grid-column:3;grid-row:2;" onclick="speak('me')"></div>
     <div class="cell" style="grid-column:4;grid-row:2;"></div>
-    <div class="cell" style="grid-column:5;grid-row:2;" onclick="say('then')"></div>
-    <div class="cell" style="grid-column:6;grid-row:2;" onclick="say('come')"></div>
-    <div class="cell" style="grid-column:7;grid-row:2;" onclick="say('that')"></div>
-    <div class="cell" style="grid-column:8;grid-row:2;" onclick="say('a')"></div>
-    <div class="cell" style="grid-column:9;grid-row:2;" onclick="say('groups')"></div>
-    <div class="cell" style="grid-column:10;grid-row:2;" onclick="say('more')"></div>
+    <div class="cell" style="grid-column:5;grid-row:2;" onclick="speak('then')"></div>
+    <div class="cell" style="grid-column:6;grid-row:2;" onclick="speak('come')"></div>
+    <div class="cell" style="grid-column:7;grid-row:2;" onclick="speak('that')"></div>
+    <div class="cell" style="grid-column:8;grid-row:2;" onclick="speak('a')"></div>
+    <div class="cell" style="grid-column:9;grid-row:2;" onclick="speak('groups')"></div>
+    <div class="cell" style="grid-column:10;grid-row:2;" onclick="speak('more')"></div>
 
     <!-- ROW 3 -->
     <div class="cell" style="grid-column:1;grid-row:3;"></div>
-    <div class="cell" style="grid-column:2;grid-row:3;" onclick="say('my')"></div>
-    <div class="cell" style="grid-column:3;grid-row:3;" onclick="say('is')"></div>
-    <div class="cell" style="grid-column:4;grid-row:3;" onclick="go('eat','food.html')"></div>
-    <div class="cell" style="grid-column:5;grid-row:3;" onclick="say('drink')"></div>
-    <div class="cell" style="grid-column:6;grid-row:3;" onclick="say('finish')"></div>
-    <div class="cell" style="grid-column:7;grid-row:3;" onclick="say('get')"></div>
-    <div class="cell" style="grid-column:8;grid-row:3;" onclick="say('all')"></div>
+    <div class="cell" style="grid-column:2;grid-row:3;" onclick="speak('my')"></div>
+    <div class="cell" style="grid-column:3;grid-row:3;" onclick="speak('is')"></div>
+    <div class="cell" style="grid-column:4;grid-row:3;" onclick="go('food.html')"></div>
+    <div class="cell" style="grid-column:5;grid-row:3;" onclick="speak('drink')"></div>
+    <div class="cell" style="grid-column:6;grid-row:3;" onclick="speak('finish')"></div>
+    <div class="cell" style="grid-column:7;grid-row:3;" onclick="speak('get')"></div>
+    <div class="cell" style="grid-column:8;grid-row:3;" onclick="speak('all')"></div>
     <div class="cell" style="grid-column:9;grid-row:3;"></div>
-    <div class="cell" style="grid-column:10;grid-row:3;" onclick="say('colors')"></div>
+    <div class="cell" style="grid-column:10;grid-row:3;" onclick="speak('colors')"></div>
 
     <!-- ROW 4 -->
-    <div class="cell" style="grid-column:1;grid-row:4;" onclick="say('potty')"></div>
-    <div class="cell" style="grid-column:2;grid-row:4;" onclick="say('it')"></div>
-    <div class="cell" style="grid-column:3;grid-row:4;" onclick="say('can')"></div>
-    <div class="cell" style="grid-column:4;grid-row:4;" onclick="go('go','watch.html')"></div>
-    <div class="cell" style="grid-column:5;grid-row:4;" onclick="say('help')"></div>
-    <div class="cell" style="grid-column:6;grid-row:4;" onclick="say('open')"></div>
-    <div class="cell" style="grid-column:7;grid-row:4;" onclick="say('put')"></div>
-    <div class="cell" style="grid-column:8;grid-row:4;" onclick="say('in')"></div>
-    <div class="cell" style="grid-column:9;grid-row:4;" onclick="say('here')"></div>
-    <div class="cell" style="grid-column:10;grid-row:4;" onclick="say('on')"></div>
+    <div class="cell" style="grid-column:1;grid-row:4;" onclick="speak('potty')"></div>
+    <div class="cell" style="grid-column:2;grid-row:4;" onclick="speak('it')"></div>
+    <div class="cell" style="grid-column:3;grid-row:4;" onclick="speak('can')"></div>
+    <div class="cell" style="grid-column:4;grid-row:4;" onclick="go('watch.html')"></div>
+    <div class="cell" style="grid-column:5;grid-row:4;" onclick="speak('help')"></div>
+    <div class="cell" style="grid-column:6;grid-row:4;" onclick="speak('open')"></div>
+    <div class="cell" style="grid-column:7;grid-row:4;" onclick="speak('put')"></div>
+    <div class="cell" style="grid-column:8;grid-row:4;" onclick="speak('in')"></div>
+    <div class="cell" style="grid-column:9;grid-row:4;" onclick="speak('here')"></div>
+    <div class="cell" style="grid-column:10;grid-row:4;" onclick="speak('on')"></div>
 
     <!-- ROW 5 -->
-    <div class="cell" style="grid-column:1;grid-row:5;" onclick="say('extra words')"></div>
-    <div class="cell" style="grid-column:2;grid-row:5;" onclick="say('you')"></div>
-    <div class="cell" style="grid-column:3;grid-row:5;" onclick="say('do')"></div>
-    <div class="cell" style="grid-column:4;grid-row:5;" onclick="say('like')"></div>
-    <div class="cell" style="grid-column:5;grid-row:5;" onclick="go('play','play2.html')"></div>
-    <div class="cell" style="grid-column:6;grid-row:5;" onclick="go('read','read.html')"></div>
-    <div class="cell" style="grid-column:7;grid-row:5;" onclick="say('stop')"></div>
-    <div class="cell" style="grid-column:8;grid-row:5;" onclick="say('out')"></div>
-    <div class="cell" style="grid-column:9;grid-row:5;" onclick="say('up')"></div>
-    <div class="cell" style="grid-column:10;grid-row:5;" onclick="say('off')"></div>
+    <div class="cell" style="grid-column:1;grid-row:5;" onclick="speak('extra words')"></div>
+    <div class="cell" style="grid-column:2;grid-row:5;" onclick="speak('you')"></div>
+    <div class="cell" style="grid-column:3;grid-row:5;" onclick="speak('do')"></div>
+    <div class="cell" style="grid-column:4;grid-row:5;" onclick="speak('like')"></div>
+    <div class="cell" style="grid-column:5;grid-row:5;" onclick="go('play2.html')"></div>
+    <div class="cell" style="grid-column:6;grid-row:5;" onclick="go('read.html')"></div>
+    <div class="cell" style="grid-column:7;grid-row:5;" onclick="speak('stop')"></div>
+    <div class="cell" style="grid-column:8;grid-row:5;" onclick="speak('out')"></div>
+    <div class="cell" style="grid-column:9;grid-row:5;" onclick="speak('up')"></div>
+    <div class="cell" style="grid-column:10;grid-row:5;" onclick="speak('off')"></div>
 
     <!-- ROW 6 -->
-    <div class="cell" style="grid-column:1;grid-row:6;" onclick="say('yes')"></div>
-    <div class="cell" style="grid-column:2;grid-row:6;" onclick="say('your')"></div>
-    <div class="cell" style="grid-column:3;grid-row:6;" onclick="say('no')"></div>
-    <div class="cell" style="grid-column:4;grid-row:6;" onclick="say('want')"></div>
-    <div class="cell" style="grid-column:5;grid-row:6;" onclick="say('take')"></div>
-    <div class="cell" style="grid-column:6;grid-row:6;" onclick="say('tell')"></div>
-    <div class="cell" style="grid-column:7;grid-row:6;" onclick="say('turn')"></div>
-    <div class="cell" style="grid-column:8;grid-row:6;" onclick="go('watch','watch.html')"></div>
-    <div class="cell" style="grid-column:9;grid-row:6;" onclick="say('down')"></div>
-    <div class="cell" style="grid-column:10;grid-row:6;" onclick="say('with')"></div>
+    <div class="cell" style="grid-column:1;grid-row:6;" onclick="speak('yes')"></div>
+    <div class="cell" style="grid-column:2;grid-row:6;" onclick="speak('your')"></div>
+    <div class="cell" style="grid-column:3;grid-row:6;" onclick="speak('no')"></div>
+    <div class="cell" style="grid-column:4;grid-row:6;" onclick="speak('want')"></div>
+    <div class="cell" style="grid-column:5;grid-row:6;" onclick="speak('take')"></div>
+    <div class="cell" style="grid-column:6;grid-row:6;" onclick="speak('tell')"></div>
+    <div class="cell" style="grid-column:7;grid-row:6;" onclick="speak('turn')"></div>
+    <div class="cell" style="grid-column:8;grid-row:6;" onclick="go('watch.html')"></div>
+    <div class="cell" style="grid-column:9;grid-row:6;" onclick="speak('down')"></div>
+    <div class="cell" style="grid-column:10;grid-row:6;" onclick="speak('with')"></div>
 
   </div>
 </div>
 
-<script src="app.js"></script>
+<script>
+function speak(text){
+  speechSynthesis.cancel();
+  speechSynthesis.speak(new SpeechSynthesisUtterance(text));
+}
+
+function go(page){
+  window.location.href = page;
+}
+</script>
+
 </body>
 </html>
