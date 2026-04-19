@@ -41,20 +41,41 @@ body { margin:0; }
     <!-- HOME -->
     <div class="cell" style="grid-column:1;grid-row:1;" onclick="goHome()"></div>
 
-    <!-- TEST TILE -->
-    <div class="cell" style="grid-column:2;grid-row:1;" onclick="speakNow('mom')"></div>
+    <!-- MOM -->
+    <div class="cell" style="grid-column:2;grid-row:1;" onclick="speak('mom')"></div>
+
+    <!-- DAD -->
+    <div class="cell" style="grid-column:3;grid-row:1;" onclick="speak('dad')"></div>
+
+    <!-- FRIEND -->
+    <div class="cell" style="grid-column:4;grid-row:1;" onclick="speak('friend')"></div>
 
   </div>
 </div>
 
 <script>
-// LOCAL SPEECH (bypasses app.js issues)
-function speakNow(word){
-  const msg = new SpeechSynthesisUtterance(word);
-  window.speechSynthesis.cancel();
-  window.speechSynthesis.speak(msg);
+// GLOBAL SPEECH FUNCTION (same across ALL pages)
+function speak(text) {
+  const synth = window.speechSynthesis;
+
+  // Ensure voices are loaded
+  if (synth.getVoices().length === 0) {
+    synth.onvoiceschanged = () => speak(text);
+    return;
+  }
+
+  const msg = new SpeechSynthesisUtterance(text);
+
+  // Optional tuning (can remove if you want)
+  msg.rate = 1;
+  msg.pitch = 1;
+  msg.volume = 1;
+
+  synth.cancel(); // stop previous speech
+  synth.speak(msg);
 }
 
+// NAVIGATION
 function goHome(){
   window.location.href = "index.html";
 }
