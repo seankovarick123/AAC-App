@@ -13,20 +13,23 @@ body { margin:0; }
   display: block;
 }
 
+/* MATCH THIS WITH YOUR MAIN PAGE */
 .grid {
   position: absolute;
-  top: 12%;
+  top: 0;
   left: 0;
   width: 100%;
-  height: 88%;
+  height: 100%;
   display: grid;
-  grid-template-columns: repeat(10,1fr);
-  grid-template-rows: repeat(6,1fr);
+  grid-template-columns: repeat(4,1fr);
+  grid-template-rows: repeat(5,1fr);
 }
 
+/* DEBUG GRID (REMOVE LATER) */
 .cell {
   width:100%;
   height:100%;
+  border: 1px solid red;
 }
 </style>
 </head>
@@ -38,40 +41,51 @@ body { margin:0; }
 
   <div class="grid">
 
-    <!-- HOME -->
+    <!-- ROW 1 -->
     <div class="cell" style="grid-column:1;grid-row:1;" onclick="goHome()"></div>
-
-    <!-- MOM -->
     <div class="cell" style="grid-column:2;grid-row:1;" onclick="speak('mom')"></div>
-
-    <!-- DAD -->
     <div class="cell" style="grid-column:3;grid-row:1;" onclick="speak('dad')"></div>
-
-    <!-- FRIEND -->
     <div class="cell" style="grid-column:4;grid-row:1;" onclick="speak('friend')"></div>
+
+    <!-- ROW 2 -->
+    <div class="cell" style="grid-column:1;grid-row:2;" onclick="speak('grandma')"></div>
+    <div class="cell" style="grid-column:2;grid-row:2;" onclick="speak('grandpa')"></div>
+    <div class="cell" style="grid-column:3;grid-row:2;" onclick="speak('teacher')"></div>
+    <div class="cell" style="grid-column:4;grid-row:2;" onclick="speak('doctor')"></div>
+
+    <!-- ROW 3 -->
+    <div class="cell" style="grid-column:1;grid-row:3;" onclick="speak('brother')"></div>
+    <div class="cell" style="grid-column:2;grid-row:3;" onclick="speak('sister')"></div>
+    <div class="cell" style="grid-column:3;grid-row:3;" onclick="speak('friend')"></div>
+    <div class="cell" style="grid-column:4;grid-row:3;" onclick="speak('neighbor')"></div>
+
+    <!-- ROW 4 -->
+    <div class="cell" style="grid-column:1;grid-row:4;" onclick="speak('baby')"></div>
+    <div class="cell" style="grid-column:2;grid-row:4;" onclick="speak('caregiver')"></div>
+    <div class="cell" style="grid-column:3;grid-row:4;" onclick="speak('coach')"></div>
+    <div class="cell" style="grid-column:4;grid-row:4;" onclick="speak('classmate')"></div>
+
+    <!-- ROW 5 -->
+    <div class="cell" style="grid-column:1;grid-row:5;" onclick="speak('help me find someone')"></div>
+    <div class="cell" style="grid-column:2;grid-row:5;" onclick="speak('I want to talk to someone')"></div>
+    <div class="cell" style="grid-column:3;grid-row:5;" onclick="speak('call someone')"></div>
+    <div class="cell" style="grid-column:4;grid-row:5;" onclick="speak('I miss someone')"></div>
 
   </div>
 </div>
 
 <script>
-// GLOBAL SPEECH FUNCTION (same across ALL pages)
+// UNIVERSAL SPEECH FUNCTION
 function speak(text) {
   const synth = window.speechSynthesis;
 
-  // Ensure voices are loaded
   if (synth.getVoices().length === 0) {
     synth.onvoiceschanged = () => speak(text);
     return;
   }
 
   const msg = new SpeechSynthesisUtterance(text);
-
-  // Optional tuning (can remove if you want)
-  msg.rate = 1;
-  msg.pitch = 1;
-  msg.volume = 1;
-
-  synth.cancel(); // stop previous speech
+  synth.cancel();
   synth.speak(msg);
 }
 
