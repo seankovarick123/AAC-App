@@ -2,18 +2,34 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="apple-mobile-web-app-capable" content="yes">
 
 <style>
 body { margin:0; }
 
-.container { position: relative; }
+.container {
+  position: relative;
+}
 
-.bg { width: 100%; }
-
-.link {
-  position: absolute;
+.bg {
+  width: 100%;
   display: block;
+}
+
+.grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+}
+
+.cell {
+  width: 100%;
+  height: 100%;
 }
 </style>
 </head>
@@ -21,33 +37,51 @@ body { margin:0; }
 <body>
 
 <div class="container">
-  <img src="Home.jpeg" class="bg">
+  <img src="home.png" class="bg">
 
-  <!-- PEOPLE -->
-  <a href="people.html" class="link" style="
-    top:42%;
-    left:8%;
-    width:24%;
-    height:20%;
-  "></a>
+  <div class="grid">
 
-  <!-- FOOD -->
-  <a href="food.html" class="link" style="
-    top:42%;
-    left:36%;
-    width:24%;
-    height:20%;
-  "></a>
+    <!-- ROW 1 (based on your layout — adjust if needed) -->
+    
+    <!-- People -->
+    <div class="cell" style="grid-column:2; grid-row:1;" onclick="goPeople()"></div>
 
-  <!-- ACTIONS -->
-  <a href="actions.html" class="link" style="
-    top:42%;
-    left:64%;
-    width:24%;
-    height:20%;
-  "></a>
+    <!-- Actions -->
+    <div class="cell" style="grid-column:3; grid-row:1;" onclick="goActions()"></div>
 
+    <!-- Go (Watch) -->
+    <div class="cell" style="grid-column:4; grid-row:1;" onclick="goWatch()"></div>
+
+    <!-- Places -->
+    <div class="cell" style="grid-column:5; grid-row:1;" onclick="goPlaces()"></div>
+
+    <!-- Time (skip if not needed) -->
+
+    <!-- Read -->
+    <div class="cell" style="grid-column:7; grid-row:1;" onclick="goRead()"></div>
+
+    <!-- YouTube -->
+    <div class="cell" style="grid-column:8; grid-row:1;" onclick="goWatch2()"></div>
+
+    <!-- Eat (Food) -->
+    <div class="cell" style="grid-column:9; grid-row:1;" onclick="goFood()"></div>
+
+    <!-- Play -->
+    <div class="cell" style="grid-column:10; grid-row:1;" onclick="goPlay()"></div>
+
+  </div>
 </div>
+
+<script>
+function goActions(){ window.location.href = "actions.html"; }
+function goPlaces(){ window.location.href = "places.html"; }
+function goFood(){ window.location.href = "food.html"; }
+function goPlay(){ window.location.href = "play2.html"; }
+function goWatch(){ window.location.href = "watch.html"; }
+function goWatch2(){ window.location.href = "watch2.html"; }
+function goPeople(){ window.location.href = "people.html"; }
+function goRead(){ window.location.href = "read.html"; }
+</script>
 
 </body>
 </html>
