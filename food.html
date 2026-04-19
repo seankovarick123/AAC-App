@@ -39,17 +39,9 @@ body { margin:0; }
 </div>
 
 <script>
-function speak(text) {
-  const synth = window.speechSynthesis;
-
-  if (synth.getVoices().length === 0) {
-    synth.onvoiceschanged = () => speak(text);
-    return;
-  }
-
-  const msg = new SpeechSynthesisUtterance(text);
-  synth.cancel();
-  synth.speak(msg);
+function speak(text){
+  speechSynthesis.cancel();
+  speechSynthesis.speak(new SpeechSynthesisUtterance(text));
 }
 
 function goHome(){
@@ -59,48 +51,20 @@ function goHome(){
 const columns = 10;
 const rows = 6;
 
-// FOOD TILE MAPPING
+// BASIC FOOD SET (we can map perfectly later)
 const actions = {
-  // TOP ROW
-  "1-1": "HOME",
-  "2-1": "pizza",
-  "3-1": "burger",
-  "4-1": "fries",
-  "5-1": "chicken",
-  "6-1": "hot dog",
-  "7-1": "sandwich",
-  "8-1": "taco",
-  "9-1": "pasta",
-  "10-1": "rice",
 
-  // SECOND ROW
-  "1-2": "apple",
-  "2-2": "banana",
-  "3-2": "grapes",
-  "4-2": "orange",
-  "5-2": "strawberry",
-  "6-2": "watermelon",
-  "7-2": "carrot",
-  "8-2": "broccoli",
-  "9-2": "corn",
-  "10-2": "salad",
+"1-1":"HOME","2-1":"eat","3-1":"drink","4-1":"food","5-1":"snack","6-1":"meal","7-1":"hungry","8-1":"thirsty",
 
-  // THIRD ROW
-  "1-3": "milk",
-  "2-3": "water",
-  "3-3": "juice",
-  "4-3": "soda",
-  "5-3": "coffee",
-  "6-3": "tea",
-  "7-3": "smoothie",
-  "8-3": "shake",
+"1-2":"apple","2-2":"banana","3-2":"orange","4-2":"grapes","5-2":"strawberry",
 
-  // FOURTH ROW (phrases)
-  "1-4": "I am hungry",
-  "2-4": "I want food",
-  "3-4": "I want a snack",
-  "4-4": "I am thirsty",
-  "5-4": "I want a drink"
+"1-3":"pizza","2-3":"burger","3-3":"fries","4-3":"chicken","5-3":"sandwich",
+
+"1-4":"water","2-4":"juice","3-4":"milk","4-4":"soda",
+
+"1-5":"I am hungry","2-5":"I want food","3-5":"I want a snack","4-5":"I am thirsty",
+
+"10-6":"NEXT"
 };
 
 const grid = document.getElementById("grid");
@@ -115,12 +79,11 @@ for (let r = 1; r <= rows; r++) {
 
     const key = `${c}-${r}`;
 
-    if (actions[key]) {
-      if (actions[key] === "HOME") {
-        cell.onclick = goHome;
-      } else {
-        cell.onclick = () => speak(actions[key]);
-      }
+    if (key === "1-1") {
+      cell.onclick = goHome;
+    }
+    else if (actions[key]) {
+      cell.onclick = () => speak(actions[key]);
     }
 
     grid.appendChild(cell);
