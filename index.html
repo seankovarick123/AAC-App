@@ -5,31 +5,20 @@
 
 <style>
 body { margin:0; }
-
 .container { position: relative; }
-
-.bg {
-  width: 100%;
-  display: block;
-}
+.bg { width: 100%; }
 
 .grid {
   position: absolute;
   top: 12%;
-  left: 0;
   width: 100%;
   height: 88%;
-  z-index: 1000;
-
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: repeat(6, 1fr);
+  grid-template-columns: repeat(10,1fr);
+  grid-template-rows: repeat(6,1fr);
 }
 
-.cell {
-  width: 100%;
-  height: 100%;
-}
+.cell { width:100%; height:100%; }
 </style>
 </head>
 
@@ -65,10 +54,10 @@ body { margin:0; }
     <div class="cell" style="grid-column:10;grid-row:2;" onclick="say('more')"></div>
 
     <!-- ROW 3 -->
-    <div class="cell" style="grid-column:1;grid-row:3;" onclick="say('')"></div>
+    <div class="cell" style="grid-column:1;grid-row:3;"></div>
     <div class="cell" style="grid-column:2;grid-row:3;" onclick="say('my')"></div>
     <div class="cell" style="grid-column:3;grid-row:3;" onclick="say('is')"></div>
-    <div class="cell" style="grid-column:4;grid-row:3;" onclick="say('eat')"></div>
+    <div class="cell" style="grid-column:4;grid-row:3;" onclick="go('eat','food.html')"></div>
     <div class="cell" style="grid-column:5;grid-row:3;" onclick="say('drink')"></div>
     <div class="cell" style="grid-column:6;grid-row:3;" onclick="say('finish')"></div>
     <div class="cell" style="grid-column:7;grid-row:3;" onclick="say('get')"></div>
@@ -80,7 +69,7 @@ body { margin:0; }
     <div class="cell" style="grid-column:1;grid-row:4;" onclick="say('potty')"></div>
     <div class="cell" style="grid-column:2;grid-row:4;" onclick="say('it')"></div>
     <div class="cell" style="grid-column:3;grid-row:4;" onclick="say('can')"></div>
-    <div class="cell" style="grid-column:4;grid-row:4;" onclick="say('go')"></div>
+    <div class="cell" style="grid-column:4;grid-row:4;" onclick="go('go','watch.html')"></div>
     <div class="cell" style="grid-column:5;grid-row:4;" onclick="say('help')"></div>
     <div class="cell" style="grid-column:6;grid-row:4;" onclick="say('open')"></div>
     <div class="cell" style="grid-column:7;grid-row:4;" onclick="say('put')"></div>
@@ -93,7 +82,7 @@ body { margin:0; }
     <div class="cell" style="grid-column:2;grid-row:5;" onclick="say('you')"></div>
     <div class="cell" style="grid-column:3;grid-row:5;" onclick="say('do')"></div>
     <div class="cell" style="grid-column:4;grid-row:5;" onclick="say('like')"></div>
-    <div class="cell" style="grid-column:5;grid-row:5;" onclick="say('play')"></div>
+    <div class="cell" style="grid-column:5;grid-row:5;" onclick="go('play','play2.html')"></div>
     <div class="cell" style="grid-column:6;grid-row:5;" onclick="go('read','read.html')"></div>
     <div class="cell" style="grid-column:7;grid-row:5;" onclick="say('stop')"></div>
     <div class="cell" style="grid-column:8;grid-row:5;" onclick="say('out')"></div>
