@@ -15,12 +15,13 @@ body { margin:0; }
   display: block;
 }
 
+/* GRID FIXED TO TILE AREA */
 .grid {
   position: absolute;
-  top: 0;
+  top: 22%;     /* pushes grid down to tiles */
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 75%;  /* only covers tile area */
   z-index: 999;
 
   display: grid;
@@ -42,8 +43,12 @@ body { margin:0; }
 
   <div class="grid">
 
-    <!-- WATCH (test first) -->
-    <div class="cell" style="grid-column:4; grid-row:1; background: rgba(0,255,0,0.4);" onclick="goWatch()"></div>
+    <!-- WATCH (TEST TILE) -->
+    <div class="cell" style="
+      grid-column:8; 
+      grid-row:6; 
+      background: rgba(0,255,0,0.4);
+    " onclick="goWatch()"></div>
 
   </div>
 </div>
